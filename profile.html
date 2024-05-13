@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой профиль</title>
+    <link rel="stylesheet" href="profile.css">
+    
+</head>
+<body>
+
+<header>
+    <h1>Мой Профиль</h1>
+    <a href="authorization.html" class="logout-button">Выход</a>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="profile.html">Мой профиль</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h2>Информация о пользователе</h2>
+    <div style="display: flex;">
+        <div style="flex-basis: 50%;">
+            <img id="avatar-image" src="four.jpg" height="200px" width="175px">
+            <label for="avatar-upload" id="avatar-label">Смена аватара</label>
+            <input type="file" id="avatar-upload" accept="image/*" style="display: none">
+        </div>
+        <div style="flex-basis: 50%;">
+            <h3>О себе</h3>
+            <textarea id="bio-textarea" placeholder="Напишите что-нибудь о себе..."></textarea>
+        </div>
+        
+    </div>
+    <p><strong id="nickname-paragraph">Никнейм:</strong> Ваш никнейм</p>
+    <p><strong id="email-paragraph">Почта:</strong> example@example.com</p>
+</section>
+
+<section>
+    <h2>Список запланированных книг</h2>
+    <ul class="book-list">
+        
+            
+    </ul>
+</section>
+
+<script>
+   
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'));
+
+    if (authenticatedUser) {
+        document.querySelector('p:nth-of-type(1)').textContent = `Никнейм: ${authenticatedUser.nickname}`;
+        document.querySelector('p:nth-of-type(2)').textContent = `Почта: ${authenticatedUser.email}`;
+
+        const userBioKey = `bio_${authenticatedUser.email}`;
+        const savedBio = localStorage.getItem(userBioKey) || '';
+        document.getElementById('bio-textarea').value = savedBio;
+
+        const avatarKey = `avatar_${authenticatedUser.email}`;
+        const savedAvatar = localStorage.getItem(avatarKey);
+        if (savedAvatar) {
+            document.getElementById('avatar-image').src = savedAvatar;
+        }
+    } else {
+        console.log('Информация об авторизованном пользователе не найдена в localStorage');
+    }
+
+    const avatarUpload = document.getElementById('avatar-upload');
+    const avatarImage = document.getElementById('avatar-image');
+
+    avatarUpload.addEventListener('change', function() {
+        const file = this.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            avatarImage.src = e.target.result;
+            const avatarKey = `avatar_${authenticatedUser.email}`;
+            localStorage.setItem(avatarKey, e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+    document.getElementById('avatar-label').addEventListener('click', function() {
+        avatarUpload.click();
+    });
+
+    document.getElementById('bio-textarea').addEventListener('input', function() {
+        if (authenticatedUser) {
+            const userBioKey = `bio_${authenticatedUser.email}`;
+            localStorage.setItem(userBioKey, this.value);
+        }
+    });
+
+    
+    const userReadingListKey = `readingList_${authenticatedUser.email}`;
+    const userReadingList = JSON.parse(localStorage.getItem(userReadingListKey)) || [];
+
+    const bookList = document.querySelector('.book-list');
+    userReadingList.forEach(book => {
+        const bookItem = document.createElement('li');
+
+        const bookTitle = document.createElement('h3');
+        bookTitle.textContent = `Название: ${book.title}`;
+        bookItem.appendChild(bookTitle);
+
+        const bookImage = document.createElement('img');
+        bookImage.src = book.image;
+        bookImage.alt = book.title;
+        bookImage.width = 90;
+        bookItem.appendChild(bookImage);
+
+        const bookImageLink = document.createElement('a');
+        bookImageLink.href = book.link; 
+        bookImageLink.appendChild(bookImage);
+        bookItem.appendChild(bookImageLink);
+
+        const bookAuthor = document.createElement('p');
+        bookAuthor.textContent = `Автор: ${book.author}`;
+        bookItem.appendChild(bookAuthor);
+
+        const bookGenres = document.createElement('p');
+        bookGenres.textContent = `Жанр: ${book.genres}`;
+        bookItem.appendChild(bookGenres);
+
+        
+
+        bookList.appendChild(bookItem);
+    });
+});
+
+
+</script>
+    
+
+</body>
+</html>
