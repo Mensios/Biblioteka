@@ -1,3 +1,3 @@
 # Biblioteka
 
-https://Mensios.github.io
+https://mensios.github.io/Biblioteka/authorization.html
