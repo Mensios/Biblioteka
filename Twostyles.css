@@ -1,0 +1,124 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #282c34; /* темно-синий */
+    color: #fff; /* белый текст */
+}
+
+header {
+    background-color: #2c3e50; /* темно-синий */
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+nav {
+    background-color: #34495e; /* темно-серый с оттенком синего */
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #1e2127; /* темно-серый */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff; /* белый текст */
+}
+
+input[type="text"], select, textarea {
+    padding: 10px;
+    width: 70%;
+    margin-right: 10px;
+    border: 1px solid #555; /* темно-серый */
+    border-radius: 5px;
+    background-color: #2c3e50; /* темно-синий */
+    color: white;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #555; /* темно-серый */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #777; /* темно-серый с немного более ярким оттенком */
+}
+
+.book-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.book-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; 
+}
+
+.book-list li {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+}
+
+#search {
+    margin: 20px;
+    padding: 20px;
+    background-color: #1e2127; /* темно-серый */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#search input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #555; /* темно-серый */
+    border-radius: 5px;
+    background-color: #2c3e50; /* темно-синий */
+    color: white;
+}
+
+#search-results {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#search-results li {
+    margin: 10px;
+    text-align: center;
+}

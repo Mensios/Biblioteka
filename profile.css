@@ -51,6 +51,26 @@ p {
     width: 200px;
     margin: 15px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-list li img {
+    width: 150px; 
+    height: 200px; 
+    margin-bottom: 10px;
+}
+
+.book-list li h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.book-list li p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.2;
 }
 
 @media (max-width: 600px) {
